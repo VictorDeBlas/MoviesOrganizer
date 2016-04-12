@@ -4,6 +4,8 @@ var angular = require('angular');
 
 module.exports = angular.module('moviesOrganizer', [
 
+	require('./main-view-container'),
+
 	require('angular-ui-bootstrap'),
 	require('angular-route')
 ])
