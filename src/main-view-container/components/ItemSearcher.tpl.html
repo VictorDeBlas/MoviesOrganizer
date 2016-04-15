@@ -1,0 +1,16 @@
+<div class="item">
+  <h1>Genres</h1>
+  <div class="headers">
+
+  </div>
+  <!-- header table -->
+  <div ng-repeat="item in vm.items | filter: vm.filterValue">
+    <item item="item"></item>
+  </div>
+  <div>
+    <h2>Filters</h2>
+    <input ng-model="vm.filterValue"></input>
+    <h2>Actions</h2>
+    <button class="btn btn-primary" ng-click="vm.add()">Add</button>
+  </div>
+</div>

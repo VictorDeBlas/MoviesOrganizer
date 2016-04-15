@@ -13,8 +13,10 @@ function MainViewRouteConfig($routeProvider) {
 
 /* @ngInject */
 function MainViewRouteController() {
-	//var vm = this;
+	var vm = this;
 
+	vm.genres = [];
+	vm.movies = [];
 
 	///////
 

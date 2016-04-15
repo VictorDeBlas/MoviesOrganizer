@@ -1,0 +1,8 @@
+<div>Create Genre</div>
+
+<span>Name</span>
+<input ng-model="vm.newName"></input>
+
+<button ng-click="vm.close()">Close</button>
+<button ng-click="vm.save()" ng-if="!vm.isSaving">Create</button>
+<button ng-click="vm.save()" ng-if="vm.isSaving">Saving...</button>
