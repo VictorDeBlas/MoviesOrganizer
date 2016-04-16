@@ -17,7 +17,7 @@ function MainViewRouteController() {
 
 	vm.genres = [];
 	vm.movies = [];
-
+	
 	///////
 
 

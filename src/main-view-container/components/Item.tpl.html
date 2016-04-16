@@ -1,4 +1,5 @@
 <div class="item-element">
 	<span>{{vm.item.name}}</span>
-	<span>{{vm.item.total}}</span> 
+	<span ng-if="vm.type==='genres'">{{vm.item.total}}</span>
+	<span ng-if="vm.type==='movies'">{{vm.item.genre}}</span>
 </div>

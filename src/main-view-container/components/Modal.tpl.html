@@ -3,10 +3,14 @@
 <div class="modal-input">
 	<span>Name</span>
 	<input ng-model="vm.newName"></input>
+
+	<select ui-select2 ng-model="vm.genreSelected" ng-if="vm.type === 'movies'">
+	    <option ng-repeat="option in vm.options">{{option.name}}</option>
+	</select>
 </div>
 
 <div class="buttons">
 	<button class="btn btn-default" ng-click="vm.close()">Close</button>
-	<button class="btn btn-primary" ng-click="vm.save()" ng-if="!vm.isSaving">Create</button>
+	<button class="btn btn-primary" ng-click="vm.save()" ng-if="!vm.isSaving" ng-disabled="vm.buttonActivated()">Create</button>
 	<button class="btn btn-primary" ng-click="vm.save()" ng-if="vm.isSaving">Saving...</button>
 </div>

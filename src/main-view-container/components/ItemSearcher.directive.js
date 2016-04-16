@@ -12,7 +12,8 @@ function ItemSearcherDirective() {
 		controllerAs: 'vm',
 		bindToController: {
 			items: '=',
-			type: '@'
+			type: '@',
+			options: '='
 		},
 	};
 	return directive;
@@ -35,7 +36,8 @@ function ItemSearcherController($uibModal) {
 		modal = $uibModal.open({
 			templateUrl: 'src/main-view-container/components/Modal.tpl.html',
 			controller: ModalController,
-			controllerAs: 'vm'
+			controllerAs: 'vm',
+			openedClass: vm.type === 'movies' ? 'movies-modal' : ''
 		});
 	}
 
@@ -51,23 +53,49 @@ function ItemSearcherController($uibModal) {
 	function ModalController() {
 		var modalScope = this;
 
+		modalScope.type = vm.type;
 		modalScope.isSaving = false;
+		modalScope.options = vm.options;
 
 		modalScope.save = save;
 		modalScope.close = close;
+		modalScope.buttonActivated = buttonActivated;
 
 		function save() {
+			var element;
+
 			modalScope.isSaving = true;
 
-			vm.items.push({
-				name:modalScope.newName,
-				total: 0
-			});
+			element = {
+				name: modalScope.newName
+			};
+
+			if ( vm.type === 'movies' ) {
+				element.genre = modalScope.genreSelected;
+				for ( var i = 0; i < vm.options.length; i++ ) {
+					if ( vm.options[i].name === modalScope.genreSelected ) {
+						vm.options[i].total += 1;
+						break;
+					}
+				}
+			} else if ( vm.type === 'genres' ) {
+				element.total = 0;
+			}
+
+			vm.items.push(element);
+
 			setTimeout( function() {
 				modalScope.isSaving = false;
 				modal.close();
 			}, 750);
+		}
 
+		function buttonActivated() {
+			if ( vm.type === 'movies' && !modalScope.genreSelected ) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		function close() {

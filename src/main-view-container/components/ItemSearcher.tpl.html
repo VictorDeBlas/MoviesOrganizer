@@ -8,7 +8,7 @@
       <span ng-if="vm.type === 'movies'">Genre</span>
     </div>
     <div ng-repeat="item in vm.items | filter: vm.filterValue | orderBy:item.name:vm.reverse">
-      <item item="item"></item>
+      <item item="item" type="vm.type"></item>
     </div>
   </div>
   <div class="filters">
